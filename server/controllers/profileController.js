@@ -9,6 +9,7 @@ exports.uploadMiddleware = upload.fields([
   { name: "profile_pic", maxCount: 1 },
   { name: "resume", maxCount: 1 },
 ]);
+///hi
 
 exports.getProfile = async (req, res) => {
   try {
