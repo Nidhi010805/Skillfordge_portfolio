@@ -173,7 +173,7 @@ const Dashboard = () => {
   {/* Get Portfolio Button */}
   {userId && (
     <button
-      onClick={() => window.open(`https://skillfordge-portfolio-lkl3.vercel.app//portfolio/${userId}`, '_blank')}
+      onClick={() => window.open(`https://skillfordge-portfolio-lkl3.vercel.app/portfolio/${userId}`, '_blank')}
       className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600 text-white text-sm font-semibold rounded-xl hover:bg-purple-700 focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800 transition-all shadow-lg"
     >
       🔗 <span>Get Your Portfolio</span>
