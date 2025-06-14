@@ -35,7 +35,7 @@ const Dashboard = () => {
       if (!token) return;
 
       try {
-        const res = await axios.get('https://skillfordge-portfolio-5.onrender.com/api/profile', {
+        const res = await axios.get('https://skillfordge-portfolio-6.onrender.com/api/profile', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -57,7 +57,7 @@ const Dashboard = () => {
       if (!token) return;
 
       try {
-        const res = await axios.get('https://skillfordge-portfolio-5.onrender.com/api/projects', {
+        const res = await axios.get('https://skillfordge-portfolio-6.onrender.com/api/projects', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setProjects(res.data || []);
@@ -82,7 +82,7 @@ const Dashboard = () => {
     if (resume) formData.append('resume', resume);
 
     try {
-      await axios.put('https://skillfordge-portfolio-5.onrender.com/api/profile', formData, {
+      await axios.put('https://skillfordge-portfolio-6.onrender.com/api/profile', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',

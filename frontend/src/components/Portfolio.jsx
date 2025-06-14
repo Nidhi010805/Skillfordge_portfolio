@@ -47,7 +47,7 @@ const Portfolio = ({ userId }) => {
   useEffect(() => {
     if (!userId) return;
     axios
-      .get(`https://skillfordge-portfolio-5.onrender.com/api/portfolio/${userId}`)
+      .get(`https://skillfordge-portfolio-6.onrender.com/api/portfolio/${userId}`)
       .then((res) => setUser(res.data))
       .catch((err) => console.error("Error loading profile:", err));
   }, [userId]);

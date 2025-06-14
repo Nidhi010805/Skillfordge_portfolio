@@ -11,7 +11,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://skillfordge-portfolio-5.onrender.com/api/auth/login", {
+      const res = await axios.post("https://skillfordge-portfolio-6.onrender.com/api/auth/login", {
         email,
         password,
       });

@@ -10,7 +10,7 @@ const PublicProfile = ({ username }) => {
   useEffect(() => {
     const fetchPublicProfile = async () => {
       try {
-        const res = await axios.get(`https://skillfordge-portfolio-5.onrender.com/api/public-profile/${username}`);
+        const res = await axios.get(`https://skillfordge-portfolio-6.onrender.com/api/public-profile/${username}`);
         setProfile(res.data);
       } catch (error) {
         console.error('Error loading public profile:', error);

@@ -9,7 +9,7 @@ const ProjectSection = ({ projects, setProjects }) => {
 
     const token = localStorage.getItem('token');
     try {
-      const res = await axios.post('https://skillfordge-portfolio-5.onrender.com/api/projects', newProject, {
+      const res = await axios.post('https://skillfordge-portfolio-6.onrender.com/api/projects', newProject, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -27,7 +27,7 @@ const ProjectSection = ({ projects, setProjects }) => {
   const handleProjectRemove = async (project) => {
     const token = localStorage.getItem('token');
     try {
-      await axios.delete(`https://skillfordge-portfolio-5.onrender.com/api/projects/${project.id}`, {
+      await axios.delete(`https://skillfordge-portfolio-6.onrender.com/api/projects/${project.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProjects(projects.filter((p) => p.id !== project.id));

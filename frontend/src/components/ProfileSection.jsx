@@ -15,7 +15,7 @@ const ProfileSection = () => {
 
   useEffect(() => {
     axios
-      .get("https://skillfordge-portfolio-5.onrender.com/api/profile", {
+      .get("https://skillfordge-portfolio-6.onrender.com/api/profile", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
