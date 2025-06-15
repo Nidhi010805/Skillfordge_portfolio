@@ -33,17 +33,17 @@ exports.addProject = async (req, res) => {
     const insertResult = await pool.query(
       `INSERT INTO projects (user_id, name, description, tech, link, position)
        VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
-      [req.userId, name, description, tech, link, rows[0].new_position]
+      [req.userId, name, description, tech.split(',').map(t => t.trim()), link, rows[0].new_position]
     );
 
     console.log("Project inserted:", insertResult.rows[0]);
-
     res.status(201).json(insertResult.rows[0]);
   } catch (err) {
-    console.error("Error adding project:", err); // FULL error
-    res.status(500).send("Error adding project");
+    console.error("Error adding project:", err); // 👈 print full error
+    res.status(500).json({ error: err.message });
   }
 };
+
 
 
 // REORDER projects
