@@ -13,17 +13,23 @@ const projectsRoutes = require("./routes/projects");
 const certificationsRoutes = require("./routes/certifications");
 const portfolioRoutes = require('./routes/portfolio');
 
-
-
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Middlewares
+// ✅ CORRECT CORS MIDDLEWARE
 app.use(cors({
-  origin: ["https://skillfordge-portfolio-lkl3.vercel.app/"],
-  credentials: true
+  origin: [
+    "https://skillfordge-portfolio-lkl3.vercel.app", // ✅ No trailing slash
+    "http://localhost:3000" // ✅ Allow local testing too
+  ],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
 }));
 
+// ✅ Handle preflight requests explicitly
+app.options("*", cors());
+
+// Other middlewares
 app.use(express.json());
 app.use(cookieParser());
 app.use(helmet());
@@ -40,7 +46,7 @@ app.use("/api/projects", projectsRoutes);
 app.use("/api/certifications", certificationsRoutes);
 app.use('/api/portfolio', portfolioRoutes);
 
-
+// Root
 app.get("/", (req, res) => {
   res.send("🚀 SkillForge API is running!");
 });
@@ -51,6 +57,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Something went wrong!" });
 });
 
+// Start server
 app.listen(port, () => {
   console.log(`✅ Server running on http://localhost:${port}`);
 });
