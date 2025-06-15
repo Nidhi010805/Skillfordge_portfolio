@@ -5,24 +5,34 @@ const ProjectSection = ({ projects, setProjects }) => {
   const [newProject, setNewProject] = useState({ name: '', description: '', tech: '', link: '' });
 
   const handleProjectAdd = async () => {
-    if (!newProject.name.trim()) return;
+  if (!newProject.name.trim()) return;
 
-    const token = localStorage.getItem('token');
-    try {
-      const res = await axios.post('https://skillfordge-portfolio-6.onrender.com/api/projects', newProject, {
+  const token = localStorage.getItem('token');
+  const formattedProject = {
+    ...newProject,
+    tech: newProject.tech.split(',').map(t => t.trim()), // ✅ array bna diya
+  };
+
+  try {
+    const res = await axios.post(
+      'https://skillfordge-portfolio-6.onrender.com/api/projects',
+      formattedProject,
+      {
         headers: {
           Authorization: `Bearer ${token}`,
         },
         withCredentials: true,
-      });
-      const savedProject = res.data;
-      setProjects([...projects, savedProject]);
-      setNewProject({ name: '', description: '', tech: '', link: '' });
-    } catch (err) {
-      console.error('Error saving project:', err);
-      alert('Failed to add project');
-    }
-  };
+      }
+    );
+    const savedProject = res.data;
+    setProjects([...projects, savedProject]);
+    setNewProject({ name: '', description: '', tech: '', link: '' });
+  } catch (err) {
+    console.error('Error saving project:', err);
+    alert('Failed to add project');
+  }
+};
+
 
   const handleProjectRemove = async (project) => {
     const token = localStorage.getItem('token');
