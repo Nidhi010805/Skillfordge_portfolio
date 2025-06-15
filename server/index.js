@@ -20,7 +20,7 @@ const port = process.env.PORT || 5000;
 
 // Middlewares
 app.use(cors({
-  origin: ["http://localhost:3000", "https://skillfordge-portfolio-lkl3.vercel.app/"],
+  origin: ["https://skillfordge-portfolio-lkl3.vercel.app/"],
   credentials: true
 }));
 
