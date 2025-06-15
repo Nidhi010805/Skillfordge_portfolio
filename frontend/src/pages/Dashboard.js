@@ -108,7 +108,7 @@ const Dashboard = () => {
     const file = e.target.files[0];
     setResume(file);
   };
-  console.log("Dashboard userId:", userId);
+  
 
 
   return (

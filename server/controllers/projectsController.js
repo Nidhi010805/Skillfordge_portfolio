@@ -20,25 +20,31 @@ exports.getProjects = async (req, res) => {
 // ADD a new project
 exports.addProject = async (req, res) => {
   const { name, description, tech, link } = req.body;
+  console.log("Incoming data:", { name, description, tech, link });
+  console.log("User ID:", req.userId);
+
   try {
     const { rows } = await pool.query(
       "SELECT COALESCE(MAX(position), -1) + 1 AS new_position FROM projects WHERE user_id = $1",
       [req.userId]
     );
-    const newPosition = rows[0].new_position;
+    console.log("Calculated position:", rows[0].new_position);
 
     const insertResult = await pool.query(
       `INSERT INTO projects (user_id, name, description, tech, link, position)
        VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
-      [req.userId, name, description, tech, link, newPosition]
+      [req.userId, name, description, tech, link, rows[0].new_position]
     );
 
-    res.status(201).json(insertResult.rows[0]); // ✅ send full project
+    console.log("Project inserted:", insertResult.rows[0]);
+
+    res.status(201).json(insertResult.rows[0]);
   } catch (err) {
-    console.error("Error adding project:", err.message);
+    console.error("Error adding project:", err); // FULL error
     res.status(500).send("Error adding project");
   }
 };
+
 
 // REORDER projects
 exports.reorderProjects = async (req, res) => {
@@ -59,7 +65,7 @@ exports.reorderProjects = async (req, res) => {
     res.json({ message: "Projects reordered successfully" });
   } catch (err) {
     await client.query("ROLLBACK");
-    console.error("Error reordering projects:", err.message);
+    console.error("Error reordering projects:", err);
     res.status(500).json({ message: "Failed to reorder projects" });
   } finally {
     client.release();

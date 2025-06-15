@@ -10,7 +10,8 @@ const ProjectSection = ({ projects, setProjects }) => {
   const token = localStorage.getItem('token');
   const formattedProject = {
     ...newProject,
-    tech: newProject.tech.split(',').map(t => t.trim()), // ✅ array bna diya
+   tech: newProject.tech.split(',').map(t => t.trim()).join(', '),
+ 
   };
 
   try {
