@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 
-const BASE_URL = 'https://skillfordge-portfolio-6.onrender.com';
+const BASE_URL = 'https://skillfordge-portfolio-7.onrender.com';
 
 const SkillsSection = ({ skills, setSkills, newSkill, setNewSkill }) => {
 

@@ -15,7 +15,7 @@ const ProfileSection = () => {
 
   useEffect(() => {
     axios
-      .get("https://skillfordge-portfolio-6.onrender.com/api/profile", {
+      .get("https://skillfordge-portfolio-7.onrender.com/api/profile", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -97,7 +97,7 @@ const ProfileSection = () => {
     }
 
     try {
-      const res = await axios.put("https://skillfordge-portfolio-5.onrender.com/api/profile", formData, {
+      const res = await axios.put("https://skillfordge-portfolio-7.onrender.com/api/profile", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
