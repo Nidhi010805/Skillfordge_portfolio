@@ -46,6 +46,11 @@ app.use("/api/projects", projectsRoutes);
 app.use("/api/certifications", certificationsRoutes);
 app.use('/api/portfolio', portfolioRoutes);
 
+// ✅ Health check route (for uptime ping)
+app.get("/health", (req, res) => {
+  res.status(200).send("OK");
+});
+
 // Root
 app.get("/", (req, res) => {
   res.send("🚀 SkillForge API is running!");
